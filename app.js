@@ -11,23 +11,45 @@ const axios = require("axios");
 
 inquirer
     .prompt([
+        ////////////// Start by prompting for user role
+        {
+            type: "list",
+            message: "What is your company role?",
+            name: "role",
+            choices: [
+                "employee",
+                "engineer",
+                "intern",
+                "manager"
+            ]
+        },
+
+        ////////////// if engineer
         {
             type: "input",
             name: "username",
-            message: "Enter your GitHub Username"
+            message: "Please enter your GitHub Username"
         },
 
+        ////////////// if intern
         {
-            type: "list",
-            message: "Which color would you prefer?",
-            name: "color",
-            choices: [
-                "green",
-                "blue",
-                "pink",
-                "red"
-            ]
+            type: "input",
+            name: "school",
+            message: "What school do you attend?"
         },
+
+        ////////////// if manager
+        {
+            type: "input",
+            name: "officenumber",
+            message: "What is your office number?"
+        },
+        {
+            type: "input",
+            name: "yacht",
+            message: "How big is your very impressive yacht?"
+        },
+
     ])
 
 
@@ -37,3 +59,6 @@ inquirer
 //======================================================================
 
 
+//======================================================================
+// Unit Tests
+//======================================================================
