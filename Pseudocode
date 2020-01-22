@@ -8,12 +8,11 @@ Build an Engineering Team
             ^       ^
     engineers       interns
 
-- inquirer prompts:
+√ - inquirer prompts:
         Employee
         - Name
         - Employee ID
         - email      
-
         - role (Engineer, Intern, or Manager):
             Engineer
                 - github username
@@ -23,10 +22,8 @@ Build an Engineering Team
                 - Office number
                 - Yacht Size
 
-Unit tests
-    - templates for each type of user (main, engineers, intern, manager)
 
-    - Classes
+√   Classes
         Employee
             Properties
                 * name
@@ -57,10 +54,11 @@ Unit tests
             Methods
                 * getRole() // Overridden to return 'Manager'
 
+√ Unit tests
+    - templates for each type of user (main, engineers, intern, manager)
 
         
 * In your HTML template files, you may want to add a placeholder character that helps your program identify where the dynamic markup begins and ends.
-
 
 Creates an HTML file
     - Displays nicely formatted team roster from user q's
