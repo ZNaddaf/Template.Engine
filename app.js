@@ -5,12 +5,19 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 
 //======================================================================
+// Introduction
+//======================================================================
+console.log(
+    "****|Welcome to Team Builder!|****"
+    + "\n" + "Take some time to build your team by adding team members."
+    + "\n" + "You can add as many as you'd like, but you must start with at least one manager.")
+
+//======================================================================
 // Inquirer Questions
 //======================================================================
-
 inquirer
     .prompt([
-        ////////////// Start by prompting for user role
+        ////////////// Start by prompting for basic information
         {
             type: "input",
             name: "name",
@@ -30,9 +37,9 @@ inquirer
                 "intern",
                 "manager"
             ]
-        },
+        }
 
-        ////////////// Employee Information
+        // Now we divide the follow-questions by role
     ]).then(
         function (answer) {
             roleQuestions(answer.role)
@@ -40,8 +47,10 @@ inquirer
     )
 
 function roleQuestions(role) {
-    console.log("role: ", role)
+    console.log("role:", role)
     const questions = [];
+
+    // Engineer Question
     if (role === "engineer") {
         questions.push(
             {
@@ -50,35 +59,34 @@ function roleQuestions(role) {
                 message: "Please enter your GitHub Username"
             }
         )
-    }
-    inquirer
-        .prompt(
 
-            ////////////// if engineer
-            questions
-            ////////////// if intern
-
-            // {
-            //     type: "input",
-            //     name: "school",
-            //     message: "What school do you attend?"
-            // },
-
-            // ////////////// if manager
-            // {
-            //     type: "input",
-            //     name: "officenumber",
-            //     message: "What is your office number?"
-            // },
-            // {
-            //     type: "input",
-            //     name: "yacht",
-            //     message: "How big is your very impressive yacht?"
-            // },
-
+        // Intern Question
+    } else if (role === "intern") {
+        questions.push(
+            {
+                type: "input",
+                name: "school",
+                message: "What school do you attend?"
+            }
         )
-}
 
+        // Manager Question
+    } else if (role === "manager") {
+        questions.push(
+            {
+                type: "input",
+                name: "officenumber",
+                message: "What is your office number?"
+            },
+            {
+                type: "input",
+                name: "yacht",
+                message: "How big is your very impressive yacht?"
+            },
+        )
+    }
+    inquirer.prompt(questions)
+}
 
 //======================================================================
 // HTML Output

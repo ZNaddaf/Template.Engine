@@ -9,7 +9,8 @@ Build an Engineering Team
     engineers       interns
 
 √ - inquirer prompts:
-        Employee
+    Add an Employee
+        Employee information:
         - Name
         - Employee ID
         - email      
@@ -57,7 +58,13 @@ Build an Engineering Team
 √ Unit tests
     - templates for each type of user (main, engineers, intern, manager)
 
-        
+HTML Output
+    Team Page
+        Individual Cards
+            - Information from Classes
+            - User input
+
+
 * In your HTML template files, you may want to add a placeholder character that helps your program identify where the dynamic markup begins and ends.
 
 Creates an HTML file
