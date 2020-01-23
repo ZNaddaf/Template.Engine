@@ -39,7 +39,7 @@ MgrQs = [
     {
         type: "input",
         name: "managerId",
-        message: "What is your employee ID?"
+        message: "What is your employee-ID?"
     },
     {
         type: "input",
@@ -59,14 +59,14 @@ MgrQs = [
 ];
 
 ////////////// Add a team member
-MgrQs = [
+AddMember = [
     {
-        type: "checkbox",
+        type: "confirm",
         message: "Would you like to add another team member?",
         name: "addMember",
         choices: [
             "Yes",
-            "No",
+            "No"
         ]
     },
 ]
@@ -94,7 +94,7 @@ MemberQs = [
         name: "role",
         choices: [
             "engineer",
-            "intern",
+            "intern"
         ]
     },
 ];
