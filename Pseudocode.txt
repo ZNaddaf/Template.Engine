@@ -35,21 +35,21 @@ Build an Engineering Team
                 * getId()
                 * getEmail()
                 * getRole() // Returns 'Employee'
-        - Intern
+    √   - Intern
             Properties
                 * school
             Methods
                 * getSchool()
                 * getRole() // Overridden to return 'Intern'
 
-        - Engineer
+    √   - Engineer
             Properties
                 * github  // GitHub username
             Methods
                 * getGithub()
                 * getRole() // Overridden to return 'Engineer'
 
-        - Manager
+    √   - Manager
             Properties
                 * officeNumber
             Methods
@@ -59,8 +59,8 @@ Build an Engineering Team
     - templates for each type of user (main, engineers, intern, manager)
 
 HTML Output
-    Team Page
-        Individual Cards
+√    Team Page
+    √    Individual Cards
             - Information from Classes
             - User input
 
