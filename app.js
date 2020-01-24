@@ -115,6 +115,8 @@ IntQ = [
 //======================================================================
 // Functions for expanded questions
 //======================================================================
+
+//////// Function to add an additional team member
 function confirmAddMember() {
     inquirer.prompt(expandTeam).then(answer => {
         console.log(answer)
@@ -130,7 +132,7 @@ function confirmAddMember() {
 }
 
 
-// Employee Question Function
+//////// Generic Employee questions function
 function askMoreQuestions() {
     inquirer.prompt(MemberQs).then(answer => {
         console.log("answers to additional questions", answer)
@@ -140,7 +142,7 @@ function askMoreQuestions() {
     })
 }
 
-////// Determines which extra Q to ask
+//////// Determines which extra Q to ask
 function roleSpecifcQs(roleQuestions, newEmp) {
     inquirer.prompt(roleQuestions).then(answer => {
         console.log("Role Specifc Questions: ", answer)
@@ -152,6 +154,7 @@ function roleSpecifcQs(roleQuestions, newEmp) {
             team.push(newEmp)
         }
         console.log(team)
+        // Ask if an additional member is needed
         confirmAddMember()
     })
 }
@@ -166,16 +169,20 @@ function questions() {
         team.push(MgrData);
         console.log(team);
 
+        // Follow up with a request for more team members
         confirmAddMember()
     })
 }
 
+//////// Finally call the questions
 questions()
-
 
 //======================================================================
 // HTML Output
 //======================================================================
+
+
+///// Generates HTML for the Main Page
 
 function generateHTML() {
 
@@ -204,17 +211,31 @@ function generateHTML() {
     <!-- Team goes here -->
     <div class="container">
         <div class="row">
-        ${ [`<h1> ${team[0].name} </h1>`, `<h2>Hello Planet</h2>`]}
-            <!-- Team Member Column #1 -->
-            <div class="col">
 
+        <!-- Manager Role Card Begins -->
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="../Assets/images/BillLumbergh.jpg" class="card-img" alt="very productive Manager">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h5 class="card-title">${team[0].managerName}</h5>
+                        <!-- Role -->
+                        <h5 class="card-title">Manager</h5>
+                        <ul class="list-group">
+                            <!-- ID -->
+                            <li class="list-group-item">Employee ID:${team[0].managerId}</li>
+                            <!-- Email -->
+                            <li class="list-group-item">Employee Email:${team[0].managerEmail}</li>
+                            <!-- Role Info -->
+                            <li class="list-group-item">Office NUmber:${team[0].officeNumber}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!-- Team Member Column #2 - Manager goes here -->
-            <div class="col">
-
-            </div>
-            <!-- Team Member Column #3 -->
-            <div class="col">
+        </div>
 
             </div>
         </div>
@@ -231,8 +252,16 @@ function generateHTML() {
 }
 
 
+//////// HTML for the Engineer Cards
+function engCard() {
+    const engHTML =
+        `
+    
+    `
+    return engHTML
+}
 
-
+//////// HTML for the Intern Cards
 function engCard() {
     const engHTML =
         `
