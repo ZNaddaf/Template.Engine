@@ -26,8 +26,6 @@ console.log(
 //======================================================================
 // Inquirer Questions
 //======================================================================
-// inquirer
-//     .prompt(
 
 MgrQs = [
     ////////////// Start with prompting for information about the Manager
@@ -59,15 +57,11 @@ MgrQs = [
 ];
 
 ////////////// Add a team member
-AddMember = [
+expandTeam = [
     {
         type: "confirm",
-        message: "Would you like to add another team member?",
+        message: "Add another team member?",
         name: "addMember",
-        choices: [
-            "Yes",
-            "No"
-        ]
     },
 ]
 
@@ -99,54 +93,150 @@ MemberQs = [
     },
 ];
 
-/////// Divide the follow-questions by role
-function (answer) {
-    roleQuestions(answer.role)
-}
-
-function roleQuestions(role) {
-    console.log("role:", role)
-    const questions = [MgrQs];
-
-    // Engineer Question
-    if (role === "engineer") {
-        questions.push(
-            {
-                type: "input",
-                name: "username",
-                message: "Please enter your GitHub Username"
-            }
-        )
-
-        // Intern Question
-    } else if (role === "intern") {
-        questions.push(
-            {
-                type: "input",
-                name: "school",
-                message: "What school do you attend?"
-            }
-        )
-
-        // Manager Question
-    } else if (role === "manager") {
-        questions.push(
-            {
-                type: "input",
-                name: "officenumber",
-                message: "What is your office number?"
-            },
-            {
-                type: "input",
-                name: "yacht",
-                message: "How big is your very impressive yacht?"
-            },
-        )
+////////////// Role Specific Questions
+// Engineer Question
+EngQ = [
+    {
+        type: "input",
+        name: "username",
+        message: "Please enter GitHub Username"
     }
-    inquirer.prompt(questions)
+];
+
+// Intern Question
+IntQ = [
+    {
+        type: "input",
+        name: "school",
+        message: "What school do they attend?"
+    }
+];
+
+//======================================================================
+// Functions for expanded questions
+//======================================================================
+function confirmAddMember() {
+    inquirer.prompt(expandTeam).then(answer => {
+        console.log(answer)
+
+        if (answer.addMember === true) {
+            console.log("Let's get more info")
+            askMoreQuestions()
+        } else {
+            console.log("Creating team...")
+            generateHTML()
+        }
+    })
 }
+
+
+// Employee Question Function
+function askMoreQuestions() {
+    inquirer.prompt(MemberQs).then(answer => {
+        console.log("answers to additional questions", answer)
+        if (answer.role === "engineer") {
+            roleSpecifcQs(EngQ, answer);
+        } else { roleSpecifcQs(IntQ, answer) }
+    })
+}
+
+////// Determines which extra Q to ask
+function roleSpecifcQs(roleQuestions, newEmp) {
+    inquirer.prompt(roleQuestions).then(answer => {
+        console.log("Role Specifc Questions: ", answer)
+        if (newEmp.role === "engineer") {
+            newEmp.github = answer.username;
+            team.push(newEmp)
+        } else {
+            newEmp.school = answer.school;
+            team.push(newEmp)
+        }
+        console.log(team)
+        confirmAddMember()
+    })
+}
+
+//======================================================================
+// Function to begin the questions
+//======================================================================
+function questions() {
+    inquirer.prompt(MgrQs).then(MgrData => {
+        MgrData.role = "Manager";
+        console.log(MgrData);
+        team.push(MgrData);
+        console.log(team);
+
+        confirmAddMember()
+    })
+}
+
+questions()
+
 
 //======================================================================
 // HTML Output
 //======================================================================
 
+function generateHTML() {
+
+    const mainhtml =
+        `
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Team Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Generic Team Header -->
+    <header>
+        <div class="jumbotron jumbotron-fluid text-center" style="background-color: rebeccapurple; color: whitesmoke;">
+            <h1 class="display-4">A Bunch of Productive* People</h1>
+        </div>
+    </header>
+
+    <!-- Team goes here -->
+    <div class="container">
+        <div class="row">
+        ${ [`<h1> ${team[0].name} </h1>`, `<h2>Hello Planet</h2>`]}
+            <!-- Team Member Column #1 -->
+            <div class="col">
+
+            </div>
+            <!-- Team Member Column #2 - Manager goes here -->
+            <div class="col">
+
+            </div>
+            <!-- Team Member Column #3 -->
+            <div class="col">
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+`
+    fs.writeFile("./output/team.html", mainhtml, function (err, data) {
+        console.log(err, data)
+    })
+}
+
+
+
+
+function engCard() {
+    const engHTML =
+        `
+    
+    `
+    return engHTML
+}
