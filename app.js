@@ -236,20 +236,66 @@ function generateHTML() {
 }
 
 
+//////// HTML for the Intern Cards
+function engCard() {
+    const intHTML =
+        `
+        <!-- Intern Role Card -->
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="../Assets/images/intern.png" class="card-img" alt="very productive Manager">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h5 class="card-title">Name: ${team[2].name}</h5>
+                        <!-- Role -->
+                        <h5 class="card-title">Intern</h5>
+                        <ul class="list-group">
+                            <!-- ID -->
+                            <li class="list-group-item">Employee ID: ${team[2].employeeId}</li>
+                            <!-- Email -->
+                            <li class="list-group-item">Email: ${team[2].email}</li>
+                            <!-- Role Info -->
+                            <li class="list-group-item">School: ${team[2].school}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+    return intHTML
+}
+
 //////// HTML for the Engineer Cards
 function engCard() {
     const engHTML =
         `
-    
-    `
-    return engHTML
-}
-
-//////// HTML for the Intern Cards
-function engCard() {
-    const engHTML =
-        `
-    
+        <!-- Engineer Role Card -->
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="../Assets/images/engineer-worker.png" class="card-img" alt="very productive Manager">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h5 class="card-title">Name: ${team[1].name}</h5>
+                        <!-- Role -->
+                        <h5 class="card-title">Engineer</h5>
+                        <ul class="list-group">
+                            <!-- ID -->
+                            <li class="list-group-item">Employee ID: ${team[1].employeeId}</li>
+                            <!-- Email -->
+                            <li class="list-group-item">Email: ${team[1].email}</li>
+                            <!-- Role Info -->
+                            <li class="list-group-item">github Username: ${team[1].github}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     `
     return engHTML
 }
